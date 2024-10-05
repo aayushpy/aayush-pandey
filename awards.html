@@ -258,10 +258,7 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       }
-      document.addEventListener('DOMContentLoaded', () => {
-        resizeCanvas();
-      });
-
+      resizeCanvas();
       window.addEventListener('resize', resizeCanvas);
 
       class Atom {
