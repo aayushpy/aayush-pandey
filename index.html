@@ -254,16 +254,16 @@
       canvas.style.height = '100%';
       canvas.style.zIndex = '-1';
       document.body.insertBefore(canvas, document.body.firstChild);
-      
+
       const ctx = canvas.getContext('2d');
-      
+
       function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       }
       resizeCanvas();
       window.addEventListener('resize', resizeCanvas);
-      
+
       class Atom {
         constructor(element) {
           this.x = Math.random() * canvas.width;
@@ -273,71 +273,73 @@
           this.speedY = Math.random() * 0.4 - 0.2;
           this.bonds = [];
         }
-      
+
         update() {
           this.x += this.speedX;
           this.y += this.speedY;
-      
+
           if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
           if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
         }
-      
+
         draw() {
           ctx.fillStyle = this.element.color;
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.element.size, 0, Math.PI * 2);
           ctx.fill();
           
-          ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
-          ctx.font = `${this.element.size * 0.8}px Arial`;
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+          ctx.font = `bold ${this.element.size * 0.8}px Arial`;
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
           ctx.fillText(this.element.symbol, this.x, this.y);
         }
       }
-      
+
       const elements = [
-        { symbol: 'H', color: 'rgba(255, 255, 255, 0.2)', size: 10, valence: 1 },
-        { symbol: 'O', color: 'rgba(255, 0, 0, 0.2)', size: 11, valence: 2 },
-        { symbol: 'N', color: 'rgba(0, 0, 255, 0.2)', size: 10, valence: 3 },
-        { symbol: 'C', color: 'rgba(100, 100, 100, 0.2)', size: 12, valence: 4 }
+        { symbol: 'N', color: 'rgba(0, 0, 255, 0.3)', size: 10, percentage: 78.084 },
+        { symbol: 'O', color: 'rgba(255, 0, 0, 0.3)', size: 9, percentage: 20.946 },
+        { symbol: 'Ar', color: 'rgba(128, 0, 128, 0.3)', size: 11, percentage: 0.934 },
+        { symbol: 'CO₂', color: 'rgba(169, 169, 169, 0.3)', size: 12, percentage: 0.0360 }
       ];
-      
+
       const atoms = [];
-      const numberOfAtoms = 80; // Reduced for performance
-      
+      const numberOfAtoms = 200; // Increased for better representation
+
       for (let i = 0; i < numberOfAtoms; i++) {
-        const element = elements[Math.floor(Math.random() * elements.length)];
-        atoms.push(new Atom(element));
+        const random = Math.random() * 100;
+        let cumulative = 0;
+        let selectedElement;
+        for (const element of elements) {
+          cumulative += element.percentage;
+          if (random < cumulative) {
+            selectedElement = element;
+            break;
+          }
+        }
+        atoms.push(new Atom(selectedElement));
       }
-      
+
       function drawBond(atom1, atom2) {
-        ctx.strokeStyle = 'rgba(150, 150, 150, 0.1)';
-        ctx.lineWidth = 0.5;
+        const gradient = ctx.createLinearGradient(atom1.x, atom1.y, atom2.x, atom2.y);
+        gradient.addColorStop(0, atom1.element.color);
+        gradient.addColorStop(1, atom2.element.color);
+        
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 3;
         ctx.beginPath();
         ctx.moveTo(atom1.x, atom1.y);
         ctx.lineTo(atom2.x, atom2.y);
         ctx.stroke();
       }
-      
-      function drawMolecularOrbital(atom1, atom2) {
-        const midX = (atom1.x + atom2.x) / 2;
-        const midY = (atom1.y + atom2.y) / 2;
-        const radius = Math.hypot(atom1.x - atom2.x, atom1.y - atom2.y) / 4;
-        
-        ctx.fillStyle = 'rgba(100, 200, 255, 0.1)';
-        ctx.beginPath();
-        ctx.ellipse(midX, midY, radius, radius / 2, Math.atan2(atom2.y - atom1.y, atom2.x - atom1.x), 0, 2 * Math.PI);
-        ctx.fill();
-      }
-      
+
       function createReactionSpark(x, y) {
-        ctx.fillStyle = 'rgba(255, 255, 0, 0.6)';
+        ctx.fillStyle = 'rgba(255, 255, 0, 0.8)';
         ctx.beginPath();
-        ctx.arc(x, y, 2, 0, Math.PI * 2);
+        ctx.arc(x, y, 3, 0, Math.PI * 2);
         ctx.fill();
       }
-      
+
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
@@ -347,48 +349,26 @@
             const dx = atoms[i].x - atoms[j].x;
             const dy = atoms[i].y - atoms[j].y;
             const distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < 100) {
+            if (distance < 50) {
               drawBond(atoms[i], atoms[j]);
-              drawMolecularOrbital(atoms[i], atoms[j]);
               atoms[i].bonds.push(atoms[j]);
               atoms[j].bonds.push(atoms[i]);
               
-              if (Math.random() < 0.01) { // 1% chance of spark per frame
+              if (Math.random() < 0.1) { // Increased spark rate to 10% chance per frame
                 createReactionSpark((atoms[i].x + atoms[j].x) / 2, (atoms[i].y + atoms[j].y) / 2);
               }
             }
           }
         }
-      
+
         atoms.forEach(atom => {
           atom.update();
           atom.draw();
-          
-          // Simple molecular geometry
-          if (atom.bonds.length === 2) {
-            // Linear geometry (e.g., CO2)
-            const angle = Math.atan2(atom.bonds[1].y - atom.bonds[0].y, atom.bonds[1].x - atom.bonds[0].x);
-            ctx.strokeStyle = 'rgba(255, 165, 0, 0.2)';
-            ctx.beginPath();
-            ctx.moveTo(atom.x - Math.cos(angle) * 20, atom.y - Math.sin(angle) * 20);
-            ctx.lineTo(atom.x + Math.cos(angle) * 20, atom.y + Math.sin(angle) * 20);
-            ctx.stroke();
-          } else if (atom.bonds.length === 3) {
-            // Trigonal planar (e.g., BF3)
-            ctx.strokeStyle = 'rgba(255, 165, 0, 0.2)';
-            for (let i = 0; i < 3; i++) {
-              const angle = (i * 2 * Math.PI / 3) + Math.PI / 6;
-              ctx.beginPath();
-              ctx.moveTo(atom.x, atom.y);
-              ctx.lineTo(atom.x + Math.cos(angle) * 20, atom.y + Math.sin(angle) * 20);
-              ctx.stroke();
-            }
-          }
         });
-      
+
         requestAnimationFrame(animate);
       }
-      
+
       animate();
     </script>  
   </body>
