@@ -243,5 +243,105 @@
     </div>
     <p>Founder <a href="https://ayurxiv.org">ayurxiv.org</a>. Interested in water remediation, the Chemistry of Ayurveda, and computational chemistry. Committed to making scientific research more <a href="https://pkp.sfu.ca/about/">open access</a>. Passionate about <a href="https://aayush-pandey.com/photographs">photography</a>, hiking, and the Himalayas. I worry about the environment. 
     </p>
+    <script>
+      // Create canvas element
+      const canvas = document.createElement('canvas');
+      canvas.id = 'canvas-background';
+      canvas.style.position = 'fixed';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      canvas.style.zIndex = '-1';
+      document.body.insertBefore(canvas, document.body.firstChild);
+      
+      const ctx = canvas.getContext('2d');
+      
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+      
+      class Atom {
+        constructor(element) {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.element = element;
+          this.speedX = Math.random() * 0.2 - 0.1;
+          this.speedY = Math.random() * 0.2 - 0.1;
+        }
+      
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+      
+          if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+          if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        }
+      
+        draw() {
+          ctx.fillStyle = this.element.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.element.size, 0, Math.PI * 2);
+          ctx.fill();
+          
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
+          ctx.font = `${this.element.size * 0.8}px Arial`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(this.element.symbol, this.x, this.y);
+        }
+      }
+      
+      const elements = [
+        { symbol: 'C', color: 'rgba(100, 100, 100, 0.2)', size: 6 },
+        { symbol: 'O', color: 'rgba(255, 0, 0, 0.2)', size: 5 },
+        { symbol: 'H', color: 'rgba(0, 0, 255, 0.2)', size: 3 },
+        { symbol: 'N', color: 'rgba(0, 255, 0, 0.2)', size: 5.5 }
+      ];
+      
+      const atoms = [];
+      const numberOfAtoms = 70;
+      
+      for (let i = 0; i < numberOfAtoms; i++) {
+        const element = elements[Math.floor(Math.random() * elements.length)];
+        atoms.push(new Atom(element));
+      }
+      
+      function drawBond(x1, y1, x2, y2) {
+        ctx.strokeStyle = 'rgba(150, 150, 150, 0.1)';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+      }
+      
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        for (let i = 0; i < atoms.length; i++) {
+          for (let j = i + 1; j < atoms.length; j++) {
+            const dx = atoms[i].x - atoms[j].x;
+            const dy = atoms[i].y - atoms[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 120) {
+              drawBond(atoms[i].x, atoms[i].y, atoms[j].x, atoms[j].y);
+            }
+          }
+        }
+      
+        atoms.forEach(atom => {
+          atom.update();
+          atom.draw();
+        });
+      
+        requestAnimationFrame(animate);
+      }
+      
+      animate();
+    </script>   
   </body>
 </html>
