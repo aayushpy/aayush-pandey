@@ -297,14 +297,14 @@
       }
       
       const elements = [
-        { symbol: 'H', color: 'rgba(255, 255, 255, 0.2)', size: 5, valence: 1 },
-        { symbol: 'O', color: 'rgba(255, 0, 0, 0.2)', size: 8, valence: 2 },
-        { symbol: 'N', color: 'rgba(0, 0, 255, 0.2)', size: 7, valence: 3 },
-        { symbol: 'C', color: 'rgba(100, 100, 100, 0.2)', size: 9, valence: 4 }
+        { symbol: 'H', color: 'rgba(255, 255, 255, 0.2)', size: 10, valence: 1 },
+        { symbol: 'O', color: 'rgba(255, 0, 0, 0.2)', size: 11, valence: 2 },
+        { symbol: 'N', color: 'rgba(0, 0, 255, 0.2)', size: 10, valence: 3 },
+        { symbol: 'C', color: 'rgba(100, 100, 100, 0.2)', size: 12, valence: 4 }
       ];
       
       const atoms = [];
-      const numberOfAtoms = 50; // Reduced for performance
+      const numberOfAtoms = 80; // Reduced for performance
       
       for (let i = 0; i < numberOfAtoms; i++) {
         const element = elements[Math.floor(Math.random() * elements.length)];
