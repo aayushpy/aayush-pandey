@@ -240,5 +240,185 @@
         <li><b>July 2022: </b>Commendation and Stipend from <i>Gurukul Kangri University</i> and <i>I.I.T. Banaras Hindu University</i> for the Ayurveda Digitization Project.</li>
     </ul>
 
+    <script>
+      // Create canvas element
+      const canvas = document.createElement('canvas');
+      canvas.id = 'canvas-background';
+      canvas.style.position = 'fixed';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      canvas.style.zIndex = '-1';
+      document.body.insertBefore(canvas, document.body.firstChild);
+
+      const ctx = canvas.getContext('2d');
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      class Atom {
+        constructor(element, x, y, speedX, speedY) {
+          this.x = x || Math.random() * canvas.width;
+          this.y = y || Math.random() * canvas.height;
+          this.element = element;
+          this.speedX = speedX || (Math.random() * 0.4 - 0.2);
+          this.speedY = speedY || (Math.random() * 0.4 - 0.2);
+          this.bonds = [];
+        }
+
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+          if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        }
+
+        draw() {
+          ctx.fillStyle = this.element.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.element.size, 0, Math.PI * 2);
+          ctx.fill();
+          
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
+          ctx.font = `${this.element.size * 0.8}px Arial`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(this.element.symbol, this.x, this.y);
+        }
+      }
+
+      const elements = [
+        { symbol: 'H', color: 'rgba(255, 255, 255, 0.2)', size: 7, valence: 1 },
+        { symbol: 'O', color: 'rgba(255, 0, 0, 0.2)', size: 6, valence: 2 },
+        { symbol: 'N', color: 'rgba(0, 0, 255, 0.2)', size: 8, valence: 3 },
+        { symbol: 'C', color: 'rgba(100, 100, 100, 0.2)', size: 9, valence: 4 }
+      ];
+
+      let atoms = [];
+      const numberOfAtoms = 50;
+      const STORAGE_KEY = 'moleculeSimulationState';
+
+      function saveSimulationState() {
+        const state = atoms.map(atom => ({
+          x: atom.x,
+          y: atom.y,
+          speedX: atom.speedX,
+          speedY: atom.speedY,
+          element: atom.element.symbol
+        }));
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      }
+
+      function loadSimulationState() {
+        const savedState = sessionStorage.getItem(STORAGE_KEY);
+        if (savedState) {
+          const state = JSON.parse(savedState);
+          atoms = state.map(atomState => {
+            const element = elements.find(e => e.symbol === atomState.element);
+            return new Atom(element, atomState.x, atomState.y, atomState.speedX, atomState.speedY);
+          });
+        } else {
+          initializeAtoms();
+        }
+      }
+
+      function initializeAtoms() {
+        atoms = [];
+        for (let i = 0; i < numberOfAtoms; i++) {
+          const element = elements[Math.floor(Math.random() * elements.length)];
+          atoms.push(new Atom(element));
+        }
+      }
+
+      function drawBond(atom1, atom2) {
+        ctx.strokeStyle = 'rgba(150, 150, 150, 0.1)';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(atom1.x, atom1.y);
+        ctx.lineTo(atom2.x, atom2.y);
+        ctx.stroke();
+      }
+
+      function drawMolecularOrbital(atom1, atom2) {
+        const midX = (atom1.x + atom2.x) / 2;
+        const midY = (atom1.y + atom2.y) / 2;
+        const radius = Math.hypot(atom1.x - atom2.x, atom1.y - atom2.y) / 4;
+        
+        ctx.fillStyle = 'rgba(100, 200, 255, 0.1)';
+        ctx.beginPath();
+        ctx.ellipse(midX, midY, radius, radius / 2, Math.atan2(atom2.y - atom1.y, atom2.x - atom1.x), 0, 2 * Math.PI);
+        ctx.fill();
+      }
+
+      function createReactionSpark(x, y) {
+        ctx.fillStyle = 'rgba(255, 255, 0, 0.6)';
+        ctx.beginPath();
+        ctx.arc(x, y, 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        for (let i = 0; i < atoms.length; i++) {
+          atoms[i].bonds = [];
+          for (let j = i + 1; j < atoms.length; j++) {
+            const dx = atoms[i].x - atoms[j].x;
+            const dy = atoms[i].y - atoms[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 100) {
+              drawBond(atoms[i], atoms[j]);
+              drawMolecularOrbital(atoms[i], atoms[j]);
+              atoms[i].bonds.push(atoms[j]);
+              atoms[j].bonds.push(atoms[i]);
+              
+              if (Math.random() < 0.1) {
+                createReactionSpark((atoms[i].x + atoms[j].x) / 2, (atoms[i].y + atoms[j].y) / 2);
+              }
+            }
+          }
+        }
+
+        atoms.forEach(atom => {
+          atom.update();
+          atom.draw();
+          
+          // Simple molecular geometry
+          if (atom.bonds.length === 2) {
+            const angle = Math.atan2(atom.bonds[1].y - atom.bonds[0].y, atom.bonds[1].x - atom.bonds[0].x);
+            ctx.strokeStyle = 'rgba(255, 165, 0, 0.2)';
+            ctx.beginPath();
+            ctx.moveTo(atom.x - Math.cos(angle) * 20, atom.y - Math.sin(angle) * 20);
+            ctx.lineTo(atom.x + Math.cos(angle) * 20, atom.y + Math.sin(angle) * 20);
+            ctx.stroke();
+          } else if (atom.bonds.length === 3) {
+            ctx.strokeStyle = 'rgba(255, 165, 0, 0.2)';
+            for (let i = 0; i < 3; i++) {
+              const angle = (i * 2 * Math.PI / 3) + Math.PI / 6;
+              ctx.beginPath();
+              ctx.moveTo(atom.x, atom.y);
+              ctx.lineTo(atom.x + Math.cos(angle) * 20, atom.y + Math.sin(angle) * 20);
+              ctx.stroke();
+            }
+          }
+        });
+
+        saveSimulationState();
+        requestAnimationFrame(animate);
+      }
+
+      // Initialize the simulation
+      loadSimulationState();
+      animate();
+
+      // Save state when leaving the page
+      window.addEventListener('beforeunload', saveSimulationState);
+    </script>
 </body>
 </html>
