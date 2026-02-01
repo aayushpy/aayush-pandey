@@ -1,423 +1,289 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
-    <meta name="description" content="Projects">
-    <title>Projects</title>
-    <style type="text/css">
-        body {
-            font-family: sans-serif;
-            text-align: justify;
-            color: black;
-            background-color: white;
-            font-size: 12pt;
-            max-width: 36em;
-            line-height: 1.25;
-            padding: 0 1em 0 1em;
-            margin: 0 auto 0 auto;
-            -webkit-hyphens: auto;
-            -moz-hyphens: auto;
-            hyphens: auto;
-            scrollbar-gutter: stable;
-        }
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
+  <meta name="description" content="Aayush Pandey's Homepage" />
+  <title>Aayush Pandey's Homepage</title>
 
-        div.important {
-            background: rgb(255, 255, 100);
-            padding: 0em;
-            margin: 0em;
-        }
+  <style type="text/css">
+    body {
+      font-family: sans-serif;
+      text-align: justify;
+      color: black;
+      background-color: white;
+      font-size: 12pt;
+      max-width: 36em;
+      line-height: 1.25;
+      padding: 0 1em 0 1em;
+      margin: 0 auto 0 auto;
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      hyphens: auto;
+      scrollbar-gutter: stable;
+    }
 
-        .collapsible-input { display: none; }
+    div.important {
+      background: rgb(255, 255, 100);
+      padding: 0em;
+      margin: 0em;
+    }
 
-        .collapsible-input         + .collapsible-title + .collapsible-content { display: none; margin: 1.0em 0.0em 1.0em 0.0em; }
-        .collapsible-input:checked + .collapsible-title + .collapsible-content { display: block; }
+    .collapsible-input { display: none; }
 
-        .collapsible-input         + .collapsible-title .collapsible-mark { display: inline; color: #0000d0; }
-        .collapsible-input:checked + .collapsible-title .collapsible-mark { display: none; }
+    .collapsible-input         + .collapsible-title + .collapsible-content { display: none; margin: 1.0em 0.0em 1.0em 0.0em; }
+    .collapsible-input:checked + .collapsible-title + .collapsible-content { display: block; }
 
-        hr {
-            margin: 1.5em auto 1.5em auto;
-            width: 1em;
-        }
+    .collapsible-input         + .collapsible-title .collapsible-mark { display: inline; color: #0000d0; }
+    .collapsible-input:checked + .collapsible-title .collapsible-mark { display: none; }
 
-        a {
-            color: #0000d0;
-            text-decoration: none;
-        }
+    hr {
+      margin: 1.5em auto 1.5em auto;
+      width: 1em;
+    }
 
-        a:visited {
-            color: #b0b0ff;
-            background-color: inherit;
-        }
+    a {
+      color: #0000d0;
+      text-decoration: none;
+    }
 
-        a:hover {
-            text-decoration: underline;
-        }
+    a:visited {
+      color: #b0b0ff;
+      background-color: inherit;
+    }
 
-        p.footer {
-            display: none;
-            text-align: right;
-            margin-top: 1em;
-            margin-bottom: 0.5em;
-        }
+    a:hover {
+      text-decoration: underline;
+    }
 
-        div.highlighted {
-            background-color: yellow;
-            padding: 0.0em 0.5em 0.0em 0.5em;
-        }
+    p.footer {
+      display: none;
+      text-align: right;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
 
-        div.highlighted a {
-            text-decoration: underline;
-        }
+    div.highlighted {
+      background-color: yellow;
+      padding: 0.0em 0.5em 0.0em 0.5em;
+    }
 
-        h1 {
-            text-align: left;
-            font-size: 175%;
-            text-transform: uppercase;
-        }
+    div.highlighted a {
+      text-decoration: underline;
+    }
 
-        h2 {
-            text-align: left;
-            font-size: 120%;
-            text-transform: uppercase;
-        }
+    h1 {
+      text-align: left;
+      font-size: 175%;
+      text-transform: uppercase;
+    }
 
-        h3 {
-            text-align: left;
-            font-size: 100%;
-        }
+    h2 {
+      text-align: left;
+      font-size: 120%;
+      text-transform: uppercase;
+    }
 
-        address {
-            font-style: normal;
-        }
+    h3 {
+      text-align: left;
+      font-size: 100%;
+    }
 
-        pre.code {
-            font-family: monospace;
-            text-align: left;
-            padding-left: 1em;
-            margin-left: 1em;
-            line-height: 1.1;
-            border-left: 2px lightgray solid;
-        }
+    address {
+      font-style: normal;
+    }
 
-        ul {
-            padding-left: 1em;
-        }
+    pre.code {
+      font-family: monospace;
+      text-align: left;
+      padding-left: 1em;
+      margin-left: 1em;
+      line-height: 1.1;
+      border-left: 2px lightgray solid;
+    }
 
-        li {
-            margin: 0.5em 0em 0.5em 0.5em;
-            padding-left: 0.25em;
-        }
+    ul {
+      padding-left: 1em;
+    }
 
-        dl.contact-infos dt {
-            float: left;
-        }
+    li {
+      margin: 0.5em 0em 0.5em 0.5em;
+      padding-left: 0.25em;
+    }
 
-        dl.contact-infos dd {
-            margin: 0 0 0 5em;
-        }
+    dl.contact-infos dt {
+      float: left;
+    }
 
-        p.menu {
-            margin: 0.5em auto 0.5em auto;
-            -webkit-hyphens: none;
-            -moz-hyphens: none;
-            hyphens: none;
-        }
+    dl.contact-infos dd {
+      margin: 0 0 0 5em;
+    }
 
-        @media (max-width: 35em) {
-            body {
-                line-height: 1.1;
-                padding: 0 0.5em 0 0.5em;
-                text-align: left;
-            }
+    p.menu {
+      margin: 0.5em auto 0.5em auto;
+      -webkit-hyphens: none;
+      -moz-hyphens: none;
+      hyphens: none;
+    }
 
-            .float-right {
-                float: none;
-            }
+    @media (max-width: 35em) {
+      body {
+        line-height: 1.1;
+        padding: 0 0.5em 0 0.5em;
+        text-align: left;
+      }
 
-            hr {
-                display: none;
-            }
+      .float-right {
+        float: none;
+      }
 
-            .float-right-when-possible {
-                float: none;
-            }
+      hr {
+        display: none;
+      }
 
-            dl.contact-infos dt {
-                float: none;
-                width: 100%;
-            }
+      .float-right-when-possible {
+        float: none;
+      }
 
-            dl.contact-infos dd {
-                margin: 0.5em 0 0.5em 1em;
-            }
+      dl.contact-infos dt {
+        float: none;
+        width: 100%;
+      }
 
-            li {
-                padding-left: 0;
-            }
-        }
+      dl.contact-infos dd {
+        margin: 0.5em 0 0.5em 1em;
+      }
 
-        @media (min-width: 55em) {
-            div.outermenu {
-                position: relative;
-                left: -7em;
-            }
+      li {
+        padding-left: 0;
+      }
+    }
 
-            p.menu {
-                text-align: left;
-                position: fixed;
-                top: 1em;
-                z-index: 1000;
-                background-color: rgba(255, 255, 255, 0.9);
-            }
+    @media (min-width: 55em) {
+      div.outermenu {
+        position: relative;
+        left: -7em;
+      }
 
-            p.menu a {
-                display: block;
-                text-transform: capitalize;
-            }
+      p.menu {
+        text-align: left;
+        position: fixed;
+        top: 1em;
+        z-index: 1000;
+        background-color: rgba(255, 255, 255, 0.9);
+      }
 
-            .separator-for-tight-layout {
-                display: none;
-            }
-        }
+      p.menu a {
+        display: block;
+        text-transform: capitalize;
+      }
 
-        @media print {
-            p.menu, span.spring, p.footer {
-                display: none;
-            }
+      .separator-for-tight-layout {
+        display: none;
+      }
+    }
 
-            a {
-                color: black;
-                text-decoration: underline;
-            }
+    @media print {
+      p.menu, span.spring, p.footer {
+        display: none;
+      }
 
-            .collapsible-content { display: block; }
-            .collapsible-mark { display: none; }
-        }
-    </style>
+      a {
+        color: black;
+        text-decoration: underline;
+      }
+
+      .collapsible-content { display: block; }
+      .collapsible-mark { display: none; }
+    }
+
+    /* --- Quotes: minimal additions, consistent with the style above --- */
+    .feed { margin-top: 1.0em; }
+
+    blockquote.quote {
+      margin: 0;
+      border-left: 6px solid black;
+      padding: 0 0 0 1.0em;
+    }
+
+    /* “block” look: indent ALL lines + justified rectangle */
+    blockquote.quote p {
+      margin: 0;
+      padding-left: 0.9em;
+      text-align: justify;
+      text-justify: inter-word;
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      hyphens: auto;
+    }
+
+    cite.source {
+      display: block;
+      margin-top: 0.5em;
+      text-align: right;
+      font-size: 85%;
+      font-style: italic;
+    }
+
+    /* spacing between quote items */
+    .quote-item { margin: 1.5em 0; }
+
+    /* optional: use <figure> for photos between quotes */
+    figure.photo { margin: 1.5em 0; }
+    figure.photo img { width: 100%; height: auto; display: block; }
+    figure.photo figcaption { margin-top: 0.5em; font-size: 85%; color: #444; }
+  </style>
 </head>
 
 <body>
-    <div class="outermenu">
-      <p class="menu">
-        <span class="separator-for-tight-layout">☰ </span>
-        <a href="index.html">Home</a>
-        <span class="separator-for-tight-layout">·</span>
-        <a href="projects.html">Projects</a>
-        <span class="separator-for-tight-layout">·</span>
-        <a href="research.html">Research</a>
-        <span class="separator-for-tight-layout">·</span>
-        <a href="Achievements.html">Achievements</a>
-        <span class="separator-for-tight-layout">·</span>
-        <a href="photographs.html">Photographs</a>
-      </p>
+  <div class="outermenu">
+    <p class="menu">
+      <span class="separator-for-tight-layout">☰ </span>
+      <a href="index.html">Home</a>
+      <span class="separator-for-tight-layout">·</span>
+      <a href="projects.html">Projects</a>
+      <span class="separator-for-tight-layout">·</span>
+      <a href="research.html">Research</a>
+      <span class="separator-for-tight-layout">·</span>
+      <a href="Achievements.html">Achievements</a>
+      <span class="separator-for-tight-layout">·</span>
+      <a href="photographs.html">Photographs</a>
+    </p>
+  </div>
+
+  <h1>Aayush Pandey's Homepage</h1>
+  <hr />
+
+  <div class="feed">
+    <!-- Photo 1 -->
+    <figure class="photo">
+      <img src="photos/photo-1.jpg" alt="Photograph 1" loading="lazy" decoding="async" />
+      <!-- <figcaption>Optional caption.</figcaption> -->
+    </figure>
+
+    <!-- Quote 1 -->
+    <div class="quote-item">
+      <blockquote class="quote">
+        <p>“You have the right to work, but never to the fruit of work. You should never engage in action for the sake of reward, nor should you long for inaction. Perform work in this world, Arjuna, as a man established within himself - without selfish attachments, and alike in success and defeat.”</p>
+      </blockquote>
+      <cite class="source">BG 2.47</cite>
     </div>
 
-    <h1>Projects</h1>
+    <!-- Photo 2 -->
+    <figure class="photo">
+      <img src="photos/photo-2.jpg" alt="Photograph 2" loading="lazy" decoding="async" />
+    </figure>
 
-    <h2>AYURXIV.ORG</h2>
+    <!-- Quote 2 -->
+    <div class="quote-item">
+      <blockquote class="quote">
+        <p>“Replace this with your next quote.”</p>
+      </blockquote>
+      <cite class="source">Source</cite>
+    </div>
 
-    <p><a href="https://ayurxiv.org">ayurxiv.org</a></p>
+    <!-- Continue: photo -> quote -> photo -> quote ... -->
+  </div>
 
-    <p>AyuRxiv (pronounced ‘ayur-archive’) is an open-access preprint repository for research papers in Ayurveda and other traditional medicine systems. By providing a platform for free and unrestricted access to preprints, <b>AyuRxiv</b> aims to accelerate the pace of scientific discovery, support evidence-based practices, and enhance the global visibility of Ayurvedic research.</p>
-    <p>As of October 2024, AyuRxiv currently houses <b>16,800 research papers from 14 different countries and 20+ research institutions worldwide</b>. AyuRxiv is also supported by the <i><a href="https://pkp.sfu.ca">Public Knowledge Project</a></i> by Simon Fraser University, which - much like me - shares the mission to make research of all kinds more accessible.</p>
-
-    <h2>RESEARCH STUDENT, RANJAN SINGH GROUP NANYANG TECHNOLOGICAL UNIVERSITY</h2>
-
-    <p><a href="https://web.spms.ntu.edu.sg/~ranjans/prof.html">TeraX Labs, Ranjan Singh Group</a></p>
-
-    <p>I am a research student at the Ranjan Singh Group in the School of Physical and Mathematical Sciences (SPMS) at NTU. I am also a researcher at the <a href="https://www.ntu.edu.sg/cdpt">Centre for Disruptive Photonic Technologies (CDPT)</a>.</p>
-    <p>My current work is investigating the effects of the spatial arrangement of split-ring resonators (SRR) in metamaterial properties. In particular, I am investigating logarithmic spacing progression and its optimization of the Q-factor of metamaterials.</p>
-
-    <h3>Work</h3>
-    <ul><li><a href="https://github.com/aayushpy/ThZ-RefIndex"><b>RefIndex:</b></a> RefIndex is a github repo I've created to help simplify the process of calculating the refractive indices of a medium in Terahertz Spectroscopy applications</li></ul>
-
-    <h2>STEMONWHEELS</h2>
-
-    <p>STEMonWHEELS is a social initiative in my home Uttarakhand, a community-driven project on providing a STEM education and resources to underserved districts in the mountainous regions of Uttarakhand. By equipping a van with a state-of-the-art laboratory, STEMonWHEELS aims to reach children in underequipped government schools and provide them with a STEM education.</p>
-    <p>STEMonWHEELS was kicked off in July 2024 by Pushkar Singh Dhami, Chief Minister of Uttarakhand. This project wouldn’t have been possible without the immense support from the <i><a href="https://ucost.uk.gov.in/">Uttarakhand Council of Science and Technology </a></i> and <i><a href="https://www.agastya.org/">Agastya International Foundation</a></i>. Today, STEMonWHEELS has provided an experiential learning platform to <b>12,000 students from 80 villages in the districts Almora, Champawat, Dehradun, and Pauri Garwhal</b>.</p>
-        <a href="https://garhwalpost.in/lab-on-wheels-flagged-off-by-cm-dhami-initially-for-4-districts-in-uttarakhand/" target="_blank" rel="noopener noreferrer">Garwhal Post: Lab on Wheels flagged off by CM Dhami in Uttarakhand</a>
-        <br><br><a href="https://timesofindia.indiatimes.com/city/dehradun/lab-on-wheels-initiative-to-popularize-science-among-rural-kids/articleshow/111547084.cms" target="_blank" rel="noopener noreferrer">Times of India: Lab on Wheels initiative to popularize science among rural kids</a></br></br>
-    <script>
-      // Create canvas element
-      const canvas = document.createElement('canvas');
-      canvas.id = 'canvas-background';
-      canvas.style.position = 'fixed';
-      canvas.style.top = '0';
-      canvas.style.left = '0';
-      canvas.style.width = '100%';
-      canvas.style.height = '100%';
-      canvas.style.zIndex = '-1';
-      document.body.insertBefore(canvas, document.body.firstChild);
-
-      const ctx = canvas.getContext('2d');
-
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      resizeCanvas();
-      window.addEventListener('resize', resizeCanvas);
-
-      class Atom {
-        constructor(element, x, y, speedX, speedY) {
-          this.x = x || Math.random() * canvas.width;
-          this.y = y || Math.random() * canvas.height;
-          this.element = element;
-          this.speedX = speedX || (Math.random() * 0.4 - 0.2);
-          this.speedY = speedY || (Math.random() * 0.4 - 0.2);
-          this.bonds = [];
-        }
-
-        update() {
-          this.x += this.speedX;
-          this.y += this.speedY;
-
-          if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-          if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-        }
-
-        draw() {
-          ctx.fillStyle = this.element.color;
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.element.size, 0, Math.PI * 2);
-          ctx.fill();
-          
-          ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
-          ctx.font = `${this.element.size * 0.8}px Arial`;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(this.element.symbol, this.x, this.y);
-        }
-      }
-
-      const elements = [
-        { symbol: 'H', color: 'rgba(255, 255, 255, 0.2)', size: 7, valence: 1 },
-        { symbol: 'O', color: 'rgba(255, 0, 0, 0.2)', size: 6, valence: 2 },
-        { symbol: 'N', color: 'rgba(0, 0, 255, 0.2)', size: 8, valence: 3 },
-        { symbol: 'C', color: 'rgba(100, 100, 100, 0.2)', size: 9, valence: 4 }
-      ];
-
-      let atoms = [];
-      const numberOfAtoms = 50;
-      const STORAGE_KEY = 'moleculeSimulationState';
-
-      function saveSimulationState() {
-        const state = atoms.map(atom => ({
-          x: atom.x,
-          y: atom.y,
-          speedX: atom.speedX,
-          speedY: atom.speedY,
-          element: atom.element.symbol
-        }));
-        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      }
-
-      function loadSimulationState() {
-        const savedState = sessionStorage.getItem(STORAGE_KEY);
-        if (savedState) {
-          const state = JSON.parse(savedState);
-          atoms = state.map(atomState => {
-            const element = elements.find(e => e.symbol === atomState.element);
-            return new Atom(element, atomState.x, atomState.y, atomState.speedX, atomState.speedY);
-          });
-        } else {
-          initializeAtoms();
-        }
-      }
-
-      function initializeAtoms() {
-        atoms = [];
-        for (let i = 0; i < numberOfAtoms; i++) {
-          const element = elements[Math.floor(Math.random() * elements.length)];
-          atoms.push(new Atom(element));
-        }
-      }
-
-      function drawBond(atom1, atom2) {
-        ctx.strokeStyle = 'rgba(150, 150, 150, 0.1)';
-        ctx.lineWidth = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(atom1.x, atom1.y);
-        ctx.lineTo(atom2.x, atom2.y);
-        ctx.stroke();
-      }
-
-      function drawMolecularOrbital(atom1, atom2) {
-        const midX = (atom1.x + atom2.x) / 2;
-        const midY = (atom1.y + atom2.y) / 2;
-        const radius = Math.hypot(atom1.x - atom2.x, atom1.y - atom2.y) / 4;
-        
-        ctx.fillStyle = 'rgba(100, 200, 255, 0.1)';
-        ctx.beginPath();
-        ctx.ellipse(midX, midY, radius, radius / 2, Math.atan2(atom2.y - atom1.y, atom2.x - atom1.x), 0, 2 * Math.PI);
-        ctx.fill();
-      }
-
-      function createReactionSpark(x, y) {
-        ctx.fillStyle = 'rgba(255, 255, 0, 0.6)';
-        ctx.beginPath();
-        ctx.arc(x, y, 2, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        for (let i = 0; i < atoms.length; i++) {
-          atoms[i].bonds = [];
-          for (let j = i + 1; j < atoms.length; j++) {
-            const dx = atoms[i].x - atoms[j].x;
-            const dy = atoms[i].y - atoms[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < 100) {
-              drawBond(atoms[i], atoms[j]);
-              drawMolecularOrbital(atoms[i], atoms[j]);
-              atoms[i].bonds.push(atoms[j]);
-              atoms[j].bonds.push(atoms[i]);
-              
-              if (Math.random() < 0.1) {
-                createReactionSpark((atoms[i].x + atoms[j].x) / 2, (atoms[i].y + atoms[j].y) / 2);
-              }
-            }
-          }
-        }
-
-        atoms.forEach(atom => {
-          atom.update();
-          atom.draw();
-          
-          // Simple molecular geometry
-          if (atom.bonds.length === 2) {
-            const angle = Math.atan2(atom.bonds[1].y - atom.bonds[0].y, atom.bonds[1].x - atom.bonds[0].x);
-            ctx.strokeStyle = 'rgba(255, 165, 0, 0.2)';
-            ctx.beginPath();
-            ctx.moveTo(atom.x - Math.cos(angle) * 20, atom.y - Math.sin(angle) * 20);
-            ctx.lineTo(atom.x + Math.cos(angle) * 20, atom.y + Math.sin(angle) * 20);
-            ctx.stroke();
-          } else if (atom.bonds.length === 3) {
-            ctx.strokeStyle = 'rgba(255, 165, 0, 0.2)';
-            for (let i = 0; i < 3; i++) {
-              const angle = (i * 2 * Math.PI / 3) + Math.PI / 6;
-              ctx.beginPath();
-              ctx.moveTo(atom.x, atom.y);
-              ctx.lineTo(atom.x + Math.cos(angle) * 20, atom.y + Math.sin(angle) * 20);
-              ctx.stroke();
-            }
-          }
-        });
-
-        saveSimulationState();
-        requestAnimationFrame(animate);
-      }
-
-      // Initialize the simulation
-      loadSimulationState();
-      animate();
-
-      // Save state when leaving the page
-      window.addEventListener('beforeunload', saveSimulationState);
-</script>
 </body>
 </html>
